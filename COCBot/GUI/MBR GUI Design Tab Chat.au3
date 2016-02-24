@@ -56,8 +56,8 @@
 				GUICtrlSetTip($chkUseResponses, GetTranslated(20,17,"Use the keywords and responses defined below"))
 
 		   $y += 25
-		   $chkUseCleverbot = GUICtrlCreateCheckbox(GetTranslated(20,18,"Use cleverbot responses"), $x - 5, $y)
-				GUICtrlSetTip($chkUseCleverbot, GetTranslated(20,19,"Get responses from cleverbot.com"))
+		   $chkUseBotlibre = GUICtrlCreateCheckbox(GetTranslated(20,18,"Use Botlibre responses"), $x - 5, $y)
+				GUICtrlSetTip($chkUseBotlibre, GetTranslated(20,19,"Get responses from Botlibre.com"))
 				GUICtrlSetOnEvent(-1, "ChatGuiCheckboxUpdate2")
 		   $y += 25
 		   $chkUseSimsimi = GUICtrlCreateCheckbox(GetTranslated(20,20,"Use simsimi responses"), $x - 5, $y)

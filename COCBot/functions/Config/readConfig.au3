@@ -714,7 +714,7 @@ Func readConfig() ;Reads config and sets it to the variables
    $ichkSwitchLang=IniRead($config, "GlobalChat", "swlang","0")
 
    $ichkClanChat=IniRead($config, "ClanChat", "use","0")
-   $ichkUseCleverbot=IniRead($config, "ClanChat", "cleverbot","0")
+   $ichkUseBotlibre=IniRead($config, "ClanChat", "Botlibre","0")
    $ichkUseSimsimi=IniRead($config, "ClanChat", "simsimi","0")
    $ichkUseResponses=IniRead($config, "ClanChat", "responses","0")
    $ichkUseGeneric=IniRead($config, "ClanChat", "always","0")

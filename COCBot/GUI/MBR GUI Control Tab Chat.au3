@@ -36,7 +36,7 @@ EndFunc   ;===> Global_Chat()
 Func Clan_Chat()
 	If GUICtrlRead($chkClanChat) = $GUI_CHECKED Then
 		GUICtrlSetState($chkUseResponses , $GUI_ENABLE)
-		GUICtrlSetState($chkUseCleverbot , $GUI_ENABLE)
+		GUICtrlSetState($chkUseBotlibre , $GUI_ENABLE)
 		GUICtrlSetState($chkUseSimsimi , $GUI_ENABLE)
 		GUICtrlSetState($chkUseGeneric , $GUI_ENABLE)
 		GUICtrlSetState($chkChatPushbullet , $GUI_ENABLE)
@@ -45,7 +45,7 @@ Func Clan_Chat()
 		GUICtrlSetState($editGeneric , $GUI_ENABLE)
 	Else
 		GUICtrlSetState($chkUseResponses , $GUI_DISABLE)
-		GUICtrlSetState($chkUseCleverbot , $GUI_DISABLE)
+		GUICtrlSetState($chkUseBotlibre , $GUI_DISABLE)
 		GUICtrlSetState($chkUseSimsimi , $GUI_DISABLE)
 		GUICtrlSetState($chkUseGeneric , $GUI_DISABLE)
 		GUICtrlSetState($chkChatPushbullet , $GUI_DISABLE)
@@ -58,12 +58,12 @@ EndFunc   ;===> Clan_Chat()
 
 Func ChatGuiCheckboxUpdate()
  	If GUICtrlRead($chkUseSimsimi) = $GUI_CHECKED Then
-		GUICtrlSetState($chkUseCleverbot , $GUI_UNCHECKED)
+		GUICtrlSetState($chkUseBotlibre , $GUI_UNCHECKED)
 	EndIf
 EndFunc
 
 Func ChatGuiCheckboxUpdate2()
-	If GUICtrlRead($chkUseCleverbot) = $GUI_CHECKED Then
+	If GUICtrlRead($chkUseBotlibre) = $GUI_CHECKED Then
 		GUICtrlSetState($chkUseSimsimi , $GUI_UNCHECKED)
 	EndIf
 EndFunc

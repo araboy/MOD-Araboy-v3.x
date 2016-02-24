@@ -1852,10 +1852,10 @@ Func applyConfig($bRedrawAtExit = True) ;Applies the data from config to the con
 	Else
 		GUICtrlSetState($chkClanChat , $GUI_UNCHECKED)
 	EndIf
-    If $ichkUseCleverbot  = 1 Then
-		GUICtrlSetState($chkUseCleverbot , $GUI_CHECKED)
+    If $ichkUseBotlibre  = 1 Then
+		GUICtrlSetState($chkUseBotlibre , $GUI_CHECKED)
 	Else
-		GUICtrlSetState($chkUseCleverbot , $GUI_UNCHECKED)
+		GUICtrlSetState($chkUseBotlibre , $GUI_UNCHECKED)
 	EndIf
     If  $ichkUseSimsimi = 1 Then
 		GUICtrlSetState( $chkUseSimsimi, $GUI_CHECKED)

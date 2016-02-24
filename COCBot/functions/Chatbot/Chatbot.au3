@@ -1,5 +1,5 @@
 ; #FUNCTION# ====================================================================================================================
-; Name ..........: readConfig.au3
+; Name ..........: Chatbot.au3
 ; Description ...: Sends chat messages in global and clan chat
 ; Syntax ........: chat
 ; Parameters ....: NA
@@ -86,37 +86,39 @@ Func ChatbotIsInterval()
    EndIf
 EndFunc
 
-; Returns the response from cleverbot or simsimi, if any
-Func runHelper($msg, $isCleverbot) ; run a script to get a response from cleverbot.com or simsimi.com
-   Dim $DOS, $Message = ''
+; Returns the response from Botlibre or simsimi, if any
+Func runHelper($msg, $isBotlibre) ; run a script to get a response from Botlibre.com or simsimi.com
+    Dim  $Message = ''
 
-   $command = '" /c' & @ScriptDir & '\lib\phantomjs.exe phantom-cleverbot-helper.js'
-	If Not $isCleverbot Then
-		$command = '" /c' & @ScriptDir & '\lib\phantomjs.exe phantom-simsimi-helper.js'
-	EndIf
+    $HelperStartTime = TimerInit()
+    $oHTTP = ObjCreate("WinHTTP.WinHTTPRequest.5.1")
+	While $Message = ''
+		$Time_Difference = TimerDiff($HelperStartTime)
+		If $Time_Difference > 5000 Then
+			SetLog("Chatbot helper is taking too long!", $COLOR_RED)
+			Return ""
+		EndIf
 
-   $DOS = Run(@ComSpec & $command & $msg & '"', "", @SW_HIDE, 8)
-   $HelperStartTime = TimerInit()
-   SetLog("Waiting for chatbot helper...")
-   While ProcessExists($DOS)
-	  ProcessWaitClose($DOS, 10)
-	  SetLog("Still waiting for chatbot helper...")
-	  $Time_Difference = TimerDiff($HelperStartTime)
-	  If $Time_Difference > 50000 Then
-		 SetLog("Chatbot helper is taking too long!", $COLOR_RED)
-		 ProcessClose($DOS)
-		 _RunDos("taskkill -f -im phantomjs.exe") ; force kill
-		 Return ""
-	  EndIf
-   WEnd
-   $Message = ''
-   While 1
-	  $Message &= StdoutRead($DOS)
-	  If @error Then
-		 ExitLoop
-	  EndIf
-   WEnd
-   Return StringStripWS($Message, 7)
+		SetLog("waiting for chatbot helper...")
+		If  $isBotlibre = 1 Then
+			$link = "http://www.botlibre.com/rest/botlibre/form-chat?instance=165&message="
+			$oHTTP.Open("Get", $link & $msg , False)
+			$oHTTP.Send()
+			$Result = $oHTTP.ResponseText
+			local $chatpm = _StringBetween($Result, 'sage>', '</mes')
+			$Message = _ArrayToString($chatpm)
+		Else
+			$simsimitoken = "16a6fc86-2f0c-48ec-b1cb-3b10195b3eea"  ;  change this key with a paid plan key http://developer.simsimi.com/
+			$link = "http://sandbox.api.simsimi.com/request.p?key="& $simsimitoken &"&lc=en&ft=1.0&text="
+			$oHTTP.Open("Get", $link & $msg , False)
+			$oHTTP.Send()
+			$Result = $oHTTP.ResponseText
+			local $chatpm = _StringBetween($Result, 'onse":"', '","')
+			$Message = _ArrayToString($chatpm)
+		EndIf
+	WEnd
+
+   Return $Message
 EndFunc
 
 Func ChatbotIsLastChatNew() ; returns true if the last chat was not by you, false otherwise
@@ -197,11 +199,14 @@ EndFunc
 ; MAIN SCRIPT ==============================================
 
 Func ChatbotMessage() ; run the chatbot
+
    If $ichkGlobalChat = 1 Then
 	  SetLog("Chatbot: Sending some chats", $COLOR_GREEN)
    ElseIf $ichkClanChat = 1 Then
 	  SetLog("Chatbot: Sending some chats", $COLOR_GREEN)
    EndIf
+
+
    If $ichkGlobalChat = 1 Then
 	  If Not ChatbotChatOpen() Then Return
 	  SetLog("Chatbot: Sending chats to global", $COLOR_GREEN)
@@ -276,7 +281,7 @@ Func ChatbotMessage() ; run the chatbot
 		 $SentMessage = False
 
 		 If $ChatMsg = "" Or $ChatMsg = " " Then
-			If $ichkUseGeneric =1 Then
+			If $ichkUseGeneric = 1 Then
 			   If Not ChatbotChatClanInput() Then Return
 			   If Not ChatbotChatInput($ClanMessages[Random(0, UBound($ClanMessages) - 1, 1)]) Then Return
 			   If Not ChatbotChatSendClan() Then Return
@@ -284,7 +289,7 @@ Func ChatbotMessage() ; run the chatbot
 			EndIf
 		 EndIf
 
-		 If $ichkUseResponses =1 And Not $SentMessage Then
+		 If $ichkUseResponses = 1 And Not $SentMessage Then
 			For $a = 0 To UBound($ClanResponses) - 1
 			   If StringInStr($ChatMsg, $ClanResponses[$a][0]) Then
 				  $Response = $ClanResponses[$a][1]
@@ -298,11 +303,11 @@ Func ChatbotMessage() ; run the chatbot
 			Next
 		 EndIf
 
-		 If ($ichkUseCleverbot =1 Or $ichkUseSimsimi = 1) And Not $SentMessage Then
-			$ChatResponse = runHelper($ChatMsg, $ichkUseCleverbot)
-			SetLog("Got cleverbot response: " & $ChatResponse, $COLOR_GREEN)
-			If StringInStr($ChatResponse, "No response") Or $ChatResponse = "" Or $ChatResponse = " " Then
-			   If $ichkUseGeneric =1 Then
+		 If ($ichkUseBotlibre = 1 Or $ichkUseSimsimi = 1) And Not $SentMessage Then
+			$ChatResponse = runHelper($ChatMsg, $ichkUseBotlibre)
+			SetLog("Got Botlibre response: " & $ChatResponse, $COLOR_GREEN)
+			If  $ChatResponse = "" Or $ChatResponse = " " Then
+			   If $ichkUseGeneric = 1 Then
 				  If Not ChatbotChatClanInput() Then Return
 				  If Not ChatbotChatInput($ClanMessages[Random(0, UBound($ClanMessages) - 1, 1)]) Then Return
 				  If Not ChatbotChatSendClan() Then Return
@@ -324,10 +329,10 @@ Func ChatbotMessage() ; run the chatbot
 		 EndIf
 
 		 ; send it via pushbullet if it's new
-		 ; putting the code here makes sure the (cleverbot, specifically) response is sent as well :P
+		 ; putting the code here makes sure the (Botlibre, specifically) response is sent as well :P
 		 If $ichkChatPushbullet =1 And $ichkPbSendNewChats =1 Then
 			If Not $SentClanChat Then
-				_Push("New chat TEXT: "& $ChatMsg)
+				_Push("New chat message: "& $ChatMsg)
 				ChatbotPushbulletSendChat()
 			EndIf
 		 EndIf

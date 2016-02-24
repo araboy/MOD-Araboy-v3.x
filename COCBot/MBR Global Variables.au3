@@ -1070,7 +1070,7 @@ Global $ichkGlobalScramble
 Global $ichkSwitchLang
 
 Global $ichkClanChat
-Global $ichkUseCleverbot
+Global $ichkUseBotlibre
 Global $ichkUseSimsimi
 Global $ichkUseResponses
 Global $ichkUseGeneric
@@ -1084,7 +1084,7 @@ Global $chkGlobalScramble;
 Global $chkSwitchLang;
 Global $chkClanChat;
 Global $chkUseResponses;
-Global $chkUseCleverbot;
+Global $chkUseBotlibre;
 Global $chkUseSimsimi;
 Global $chkUseGeneric;
 Global $chkChatPushbullet;

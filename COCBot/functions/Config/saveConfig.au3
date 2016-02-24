@@ -1728,10 +1728,10 @@ Func saveConfig() ;Saves the controls settings to the config
 	Else
 		IniWrite($config, "ClanChat", "use", "0")
 	EndIf
-	If GUICtrlRead($chkUseCleverbot) = $GUI_CHECKED Then
-		IniWrite($config, "ClanChat", "cleverbot", "1")
+	If GUICtrlRead($chkUseBotlibre) = $GUI_CHECKED Then
+		IniWrite($config, "ClanChat", "Botlibre", "1")
 	Else
-		IniWrite($config, "ClanChat", "cleverbot", "0")
+		IniWrite($config, "ClanChat", "Botlibre", "0")
 	EndIf
 	If GUICtrlRead($chkUseSimsimi) = $GUI_CHECKED Then
 		IniWrite($config, "ClanChat", "simsimi", "1")
