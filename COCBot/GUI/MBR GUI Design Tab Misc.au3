@@ -75,8 +75,8 @@ Local $x = 30, $y = 205
 ;	GUICtrlCreateGroup("", -99, -99, 1, 1)
 
 Local $x = 285, $y = 205
-	$grpLanguages = GUICtrlCreateGroup(GetTranslated(7,32, "GUI Language"), $x - 20, $y - 20, 195, 45)
-		$cmbLanguage = GUICtrlCreateCombo("", $x - 10 , $y - 5, 177, -1, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
+	$grpLanguages = GUICtrlCreateGroup(GetTranslated(7,32, "GUI Language"), $x - 45, $y - 20, 215, 45)
+		$cmbLanguage = GUICtrlCreateCombo("", $x - 35 , $y - 5, 195, -1, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
 			$txtTip = GetTranslated(7,33, "Use this to switch to a different GUI language")
 			GUICtrlSetTip(-1, $txtTip)
 
