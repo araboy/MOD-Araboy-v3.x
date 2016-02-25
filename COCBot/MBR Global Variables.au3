@@ -416,7 +416,7 @@ Global $THusedKing = 0
 Global $THusedQueen = 0
 Global $THusedWarden = 0
 Global $icmbDetectTrapedTH
-$TrappedAllIn = False
+Global $TrappedAllIn = False
 ; smart save troop
 Global $smartsaveTH = "-"
 Global $countFindPixCloser = 0
@@ -426,6 +426,7 @@ Global $smartsaveend = 0
 Global $percentCollectors
 Global $useFFBarchST
 Global $icmbInsideCol
+Global $FourFinger = 0
 
 Global $TrainSpecial = 1 ;0=Only trains after atk. Setting is automatic
 Global $cBarbarian = 0, $cArcher = 0, $cGoblin = 0, $cGiant = 0, $cWallbreaker = 0, $cWizard = 0, $cBalloon = 0, $cDragon = 0, $cPekka = 0, $cMinion = 0, $cHogs = 0, $cValkyrie = 0, $cGolem = 0, $cWitch = 0, $cLavaHound = 0

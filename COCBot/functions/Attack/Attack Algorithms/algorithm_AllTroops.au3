@@ -326,7 +326,7 @@ Func algorithm_AllTroops() ;Attack Algorithm for all existing troops
 	getHeroes()
 	$saveTroops = 0
 	$smartsaveend = 0
-	Global $FourFinger = 0
+	$FourFinger = 0
 	If _Sleep($iDelayalgorithm_AllTroops1) Then Return
 	If $iMatchMode = $TS Then
 		useTownHallSnipe()
