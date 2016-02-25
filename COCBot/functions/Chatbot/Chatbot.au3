@@ -61,14 +61,14 @@ EndFunc
 
 Func ChatbotChatSendClan() ; click send
    If _Sleep(1000) Then Return False
-   Click(282 ,95 , 1, 0, ""); send
+   Click(282 ,90 , 1, 0, ""); send
    If _Sleep(2000) Then Return False
    Return True
 EndFunc
 
 Func ChatbotChatSendGlobal() ; click send
    If _Sleep(1000) Then Return False
-   Click(284 ,62 , 1, 0, ""); send
+   Click(282 ,60 , 1, 0, ""); send
    If _Sleep(2000) Then Return False
    Return True
 EndFunc

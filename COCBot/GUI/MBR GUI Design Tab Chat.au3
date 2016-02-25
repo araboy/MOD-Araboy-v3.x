@@ -12,12 +12,12 @@
 ; Link ..........: https://github.com/MyBotRun/MyBot/wiki
 ; Example .......: No
 ; ===============================================================================================================================
-
+global $GrpGlobalChat, $GrpClanChat
   $tabChat = GUICtrlCreateTabItem(GetTranslated(20,1,"Chat"))
 
 	Local $x = 30, $y = 145
 
-	    GUICtrlCreateGroup(GetTranslated(20,2,"Global Chat"), $x - 20, $y - 20, 225, 375)
+	    $GrpGlobalChat = GUICtrlCreateGroup(GetTranslated(20,2,"Global Chat"), $x - 20, $y - 20, 225, 375)
 		$y = 140
 			$chkGlobalChat = GUICtrlCreateCheckbox(GetTranslated(20,3,"Advertise in global"), $x - 5, $y)
 				GUICtrlSetTip($chkGlobalChat, GetTranslated(20,4,"Use global chat to send messages"))
@@ -46,7 +46,7 @@
 	$x = 255
 	$y = 145
 
-		GUICtrlCreateGroup(GetTranslated(20,13,"Clan Chat"), $x - 20, $y - 20, 225, 375)
+		$GrpClanChat = GUICtrlCreateGroup(GetTranslated(20,13,"Clan Chat"), $x - 20, $y - 20, 225, 375)
 		$y = 140
 			$chkClanChat = GUICtrlCreateCheckbox(GetTranslated(20,14,"Chat in clan chat"), $x - 5, $y)
 				GUICtrlSetTip($chkClanChat,GetTranslated(20,15, "Use clan chat to send messages"))
