@@ -80,6 +80,8 @@ Func _RemoteControl()
 						$txtHelp &= '\n' & "BOT <Village Name> LASTRAID - send the last raid loot screenshot of <Village Name>"
 						$txtHelp &= '\n' & "BOT <Village Name> LASTRAIDTXT - send the last raid loot values of <Village Name>"
 						$txtHelp &= '\n' & "BOT <Village Name> SCREENSHOT - send a screenshot of <Village Name>"
+						$txtHelp &= '\n' & "BOT <Village Name> SENDCHAT <TEXT> - send TEXT in clan chat of <Village Name>"
+						$txtHelp &= '\n' & "BOT <Village Name> GETCHATS <STOP|NOW|INTERVAL> - select any of this three option to do"
 						$txtHelp &= '\n'
 						$txtHelp &= '\n' & "Examples:"
 						$txtHelp &= '\n' & "Bot MyVillage Pause"
@@ -146,13 +148,38 @@ Func _RemoteControl()
 						Else
 							_Push($iOrigPushB & " | Request to Stop..." & "\n" & "Your bot is currently stopped, no action was taken")
 						EndIf
-					Case Else
-						Local $lenstr = StringLen("BOT " & StringUpper($iOrigPushB) & " ")
-						Local $teststr = StringLeft($body[$x], $lenstr)
-						If $teststr = ("BOT " & StringUpper($iOrigPushB) & " ") Then
-							SetLog("Pushbullet: received command syntax wrong, command ignored.", $COLOR_RED)
-							_Push($iOrigPushB & " | Command not recognized" & "\n" & "Please push BOT HELP to obtain a complete command list.")
+					Case Else ;chat bot
+						$startCmd = StringLeft($body[$x], StringLen("BOT " & StringUpper($iOrigPushB) & " SENDCHAT "))
+						If $startCmd = "BOT " & StringUpper($iOrigPushB) & " SENDCHAT " Then
+							$chatMessage = StringRight($body[$x], StringLen($body[$x]) - StringLen("BOT " & StringUpper($iOrigPushB) & " SENDCHAT "))
+							$chatMessage = StringLower($chatMessage)
+							ChatbotPushbulletQueueChat($chatMessage)
 							_DeleteMessage($iden[$x])
+							_Push($iOrigPushB & " | Chat queued, will send on next idle")
+						Else
+							$startCmd = StringLeft($body[$x], StringLen("BOT " & StringUpper($iOrigPushB) & " GETCHATS "))
+							If $startCmd == "BOT " & StringUpper($iOrigPushB) & " GETCHATS " Then
+								_DeleteMessage($iden[$x])
+								$Interval = StringRight($body[$x], StringLen($body[$x]) - StringLen("BOT " & StringUpper($iOrigPushB) & " GETCHATS "))
+								If $Interval = "STOP" Then
+									ChatbotPushbulletStopChatRead()
+									_Push($iOrigPushB & " | Stopping interval sending")
+								ElseIf $Interval = "NOW" Then
+									ChatbotPushbulletQueueChatRead()
+									_Push($iOrigPushB & " | Command queued, will send clan chat image on next idle")
+								Else
+									ChatbotPushbulletIntervalChatRead(Number($Interval))
+									_Push($iOrigPushB & " | Command queued, will send clan chat image on interval")
+								EndIf
+							Else
+								Local $lenstr = StringLen("BOT " & StringUpper($iOrigPushB) & " ")
+								Local $teststr = StringLeft($body[$x], $lenstr)
+								If $teststr = ("BOT " & StringUpper($iOrigPushB) & " ") Then
+									SetLog("Pushbullet: received command syntax wrong, command ignored.", $COLOR_RED)
+									_Push($iOrigPushB & " | Command not recognized" & "\n" & "Please push BOT HELP to obtain a complete command list.")
+									_DeleteMessage($iden[$x])
+								EndIf
+							EndIf
 						EndIf
 				EndSwitch
 
@@ -161,7 +188,7 @@ Func _RemoteControl()
 			EndIf
 		Next
 	EndIf
-   endif
+   EndIf
   If $pEnabled2=1 then
 	  ;$access_token2 = $PushToken2
 	  $oHTTP = ObjCreate("WinHTTP.WinHTTPRequest.5.1")
