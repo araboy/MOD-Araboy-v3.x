@@ -29,16 +29,16 @@ global $GrpGlobalChat, $GrpClanChat
 		   $chkSwitchLang = GUICtrlCreateCheckbox(GetTranslated(20,7,"Switch languages"), $x - 5, $y)
 				GUICtrlSetTip($chkSwitchLang, GetTranslated(20,8,"Switch languages after spamming for a new global chatroom"))
 		   $y += 25
-		   $editGlobalMessages1 = GUICtrlCreateEdit("", $x - 5, $y, 200, 70)
+		   $editGlobalMessages1 = GUICtrlCreateEdit("ba|ca|da|fa|ga", $x - 5, $y, 200, 70)
 				GUICtrlSetTip($editGlobalMessages1,GetTranslated(20,9, "Take one item randomly from this list (one per line) and add it to create a message to send to global"))
 		   $y += 70
-		   $editGlobalMessages2 = GUICtrlCreateEdit("", $x - 5, $y, 200, 70)
+		   $editGlobalMessages2 = GUICtrlCreateEdit("ba|ca|da|fa|ga", $x - 5, $y, 200, 70)
 				GUICtrlSetTip($editGlobalMessages2, GetTranslated(20,10,"Take one item randomly from this list (one per line) and add it to create a message to send to global"))
 		   $y += 70
-		   $editGlobalMessages3 = GUICtrlCreateEdit("", $x - 5, $y, 200, 70)
+		   $editGlobalMessages3 = GUICtrlCreateEdit("ba|ca|da|fa|ga", $x - 5, $y, 200, 70)
 				GUICtrlSetTip($editGlobalMessages3, GetTranslated(20,11,"Take one item randomly from this list (one per line) and add it to create a message to send to global"))
 		   $y += 70
-		   	   $editGlobalMessages4 = GUICtrlCreateEdit("", $x - 5, $y, 200, 70)
+		   	   $editGlobalMessages4 = GUICtrlCreateEdit("ba|ca|da|fa|ga", $x - 5, $y, 200, 70)
 				GUICtrlSetTip($editGlobalMessages4, GetTranslated(20,12,"Take one item randomly from this list (one per line) and add it to create a message to send to global"))
 		   $y += 70
 		GUICtrlCreateGroup("", -99, -99, 1, 1)
@@ -74,10 +74,10 @@ global $GrpGlobalChat, $GrpClanChat
 				GUICtrlSetTip($chkPbSendNewChats, GetTranslated(20,27,"Will send an image of your clan chat via Telegram when a new chat is detected. Not guaranteed to be 100% accurate."))
 		   $y += 30
 
-		   $editResponses = GUICtrlCreateEdit("", $x - 5, $y, 200, 85)
+		   $editResponses = GUICtrlCreateEdit("keyword:Response|hello:Hi, Selamat Datang di clan|Hadir:Monggo|Joined:Please Intro yg baru join|Askum:waalaikum salam", $x - 5, $y, 200, 85)
 				GUICtrlSetTip($editResponses, GetTranslated(20,28,"Look for the specified keywords in clan messages and respond with the responses. One item per line, in the format keyword:response"))
 		   $y += 90
-		   $editGeneric = GUICtrlCreateEdit("", $x - 5, $y, 200, 85)
+		   $editGeneric = GUICtrlCreateEdit("Testing on Chat|Selamat Datang di Clan|Baru Hadir bro|Assalamualaikum bro|Semoga betah ya,..", $x - 5, $y, 200, 85)
 				GUICtrlSetTip($editGeneric,GetTranslated(20,29, "Generic messages to send, one per line"))
 		GUICtrlCreateGroup("", -99, -99, 1, 1)
     GUICtrlCreateTabItem("")

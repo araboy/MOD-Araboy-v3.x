@@ -740,10 +740,10 @@ Func readConfig() ;Reads config and sets it to the variables
    Next
    $ClanResponses = $ClanResponses1
 
-   $GlobalMessages1 = StringSplit(IniRead($config, "GlobalChat", "globalMsg1", "ba|ca|da|fa|ga|ha|ja|ka|la|ma|na|pa|qa|ra|sa|ta|va|wa|xa|ya|za"), "|", 2)
-   $GlobalMessages2 = StringSplit(IniRead($config, "GlobalChat", "globalMsg2", "ba|ca|da|fa|ga|ha|ja|ka|la|ma|na|pa|qa|ra|sa|ta|va|wa|xa|ya|za"), "|", 2)
-   $GlobalMessages3 = StringSplit(IniRead($config, "GlobalChat", "globalMsg2", "ba|ca|da|fa|ga|ha|ja|ka|la|ma|na|pa|qa|ra|sa|ta|va|wa|xa|ya|za"), "|", 2)
-   $GlobalMessages4 = StringSplit(IniRead($config, "GlobalChat", "globalMsg4", "ba|ca|da|fa|ga|ha|ja|ka|la|ma|na|pa|qa|ra|sa|ta|va|wa|xa|ya|za"), "|", 2)
+   $GlobalMessages1 = StringSplit(IniRead($config, "GlobalChat", "globalMsg1", "ba|ca|da|fa|ga"), "|", 2)
+   $GlobalMessages2 = StringSplit(IniRead($config, "GlobalChat", "globalMsg2", "ba|ca|da|fa|ga"), "|", 2)
+   $GlobalMessages3 = StringSplit(IniRead($config, "GlobalChat", "globalMsg2", "ba|ca|da|fa|ga"), "|", 2)
+   $GlobalMessages4 = StringSplit(IniRead($config, "GlobalChat", "globalMsg4", "ba|ca|da|fa|ga"), "|", 2)
 
 	Else
 		Return False
