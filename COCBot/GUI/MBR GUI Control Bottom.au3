@@ -780,12 +780,12 @@ EndFunc
 
 Func btnTesttrap()
 	Global $iDetectedImageType = 0
-	Local $ipixel=GetLocationMine2()
-	setlog("total Goldmine found: " & UBound($ipixel) ,$COLOR_TEAL)
+;~ 	Local $ipixel=GetLocationMine2()
+;~ 	setlog("total Goldmine found: " & UBound($ipixel) ,$COLOR_TEAL)
 
 
 	Local $x
-	Local $useimages = "*NORM*.png"
+	Local $useimages = "*NORM*.bmp"
     Local $DefImages
 	Assign("DefImages" , StringSplit("", ""))
 	$x = _FileListToArrayRec(@ScriptDir & "\Profiles\01\Temp\" , $useimages, $FLTAR_FILES, $FLTAR_NORECUR, $FLTAR_SORT, $FLTAR_NOPATH)

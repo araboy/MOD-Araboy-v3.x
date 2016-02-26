@@ -135,9 +135,9 @@ $grpVillage = GUICtrlCreateGroup(GetTranslated(13,21, "Village"), $x - 20, $y - 
  	$btnTestVillage = GUICtrlCreateButton("TEST BUTTON", $x + 25 , $y + 54, 100, 18)
  		GUICtrlSetOnEvent(-1, "ButtonBoost")
 		GUICtrlSetState(-1, $GUI_HIDE)
- ;	$btnTestVillage = GUICtrlCreateButton("TEST BUTTON", $x + 90 , $y -25, -1, -1)
+;~ 	$btnTestVillage = GUICtrlCreateButton("TEST BUTTON", $x + 50 , $y + 45, -1, -1)
 ;~ 		GUICtrlSetOnEvent(-1, "btnTestDeadBase")
-;		GUICtrlSetOnEvent(-1, "btnTesttrap")
+;~ 		GUICtrlSetOnEvent(-1, "btnTesttrap")
 ;		GUICtrlSetState(-1, $GUI_HIDE)
 GUICtrlCreateGroup("", -99, -99, 1, 1)
 
