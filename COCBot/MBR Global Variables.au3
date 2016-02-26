@@ -1056,8 +1056,8 @@ Global $DestroyedElixirIMG0, $DestroyedElixirIMG1, $DestroyedElixirIMG2, $Destro
 Global $DestroyedDarkIMG0, $DestroyedDarkIMG1, $DestroyedDarkIMG2, $DestroyedDarkIMG3, $DestroyedDarkIMG4, $DestroyedDarkIMG5, $DestroyedDarkIMG6, $DestroyedDarkIMG7, $DestroyedDarkIMG8
 
 
-;chat
-; SETTINGS =================================================
+
+;chat =================================================
 
 Global $ClanMessages = ""
 Global $ClanResponses = ""
@@ -1079,23 +1079,23 @@ Global $ichkChatPushbullet
 Global $ichkPbSendNewChats
 
 Global $ChatbotStartTime
-; GUI ======================================================
-Global $chkGlobalChat;
-Global $chkGlobalScramble;
-Global $chkSwitchLang;
-Global $chkClanChat;
-Global $chkUseResponses;
-Global $chkUseBotlibre;
-Global $chkUseSimsimi;
-Global $chkUseGeneric;
-Global $chkChatPushbullet;
-Global $chkPbSendNewChats;
-Global $editGlobalMessages1;
-Global $editGlobalMessages2;
-Global $editGlobalMessages3;
-Global $editGlobalMessages4;
-Global $editResponses;
-Global $editGeneric;
+
+Global $chkGlobalChat
+Global $chkGlobalScramble
+Global $chkSwitchLang
+Global $chkClanChat
+Global $chkUseResponses
+Global $chkUseBotlibre
+Global $chkUseSimsimi
+Global $chkUseGeneric
+Global $chkChatPushbullet
+Global $chkPbSendNewChats
+Global $editGlobalMessages1
+Global $editGlobalMessages2
+Global $editGlobalMessages3
+Global $editGlobalMessages4
+Global $editResponses
+Global $editGeneric
 Global $ChatbotQueuedChats[0]
 Global $ChatbotReadQueued = False
 Global $ChatbotReadInterval = 0

@@ -138,6 +138,8 @@ Func chkSnipeMode()
 		GUICtrlSetState($chkUseLSpellsTH, $GUI_ENABLE)
 		GUICtrlSetState($cmbDetectTrapedTH, $GUI_ENABLE)
 		GUICtrlSetState($chkDrillZapTH, $GUI_ENABLE)
+		If GUICtrlRead($chkTSMeetDE) = $GUI_CHECKED Then GUICtrlSetState($chkTSMeetOne, $GUI_ENABLE)
+
 	Else
 		$OptTrophyMode = 0
 		GUICtrlSetState($txtTHaddtiles, $GUI_DISABLE)
@@ -159,6 +161,7 @@ Func chkSnipeMode()
 		GUICtrlSetState($chkUseLSpellsTH, $GUI_DISABLE)
 		GUICtrlSetState($cmbDetectTrapedTH, $GUI_DISABLE)
 		GUICtrlSetState($chkDrillZapTH, $GUI_DISABLE)
+		GUICtrlSetState($chkTSMeetOne, $GUI_DISABLE)
 	EndIf
 EndFunc   ;==>chkSnipeMode
 

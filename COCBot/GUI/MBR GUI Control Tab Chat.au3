@@ -12,8 +12,7 @@
 ; Link ..........: https://github.com/MyBotRun/MyBot/wiki
 ; Example .......: No
 ; ===============================================================================================================================
-#include <Process.au3>
-#include <Array.au3>
+
 
 Func Global_Chat()
 	If GUICtrlRead($chkGlobalChat) = $GUI_CHECKED Then
