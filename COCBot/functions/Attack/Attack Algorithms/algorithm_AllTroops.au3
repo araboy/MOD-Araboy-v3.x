@@ -347,7 +347,11 @@ Func algorithm_AllTroops() ;Attack Algorithm for all existing troops
 	$DeployHeroesPosition[1] = -1
 	If $saveTroops = 1 Then
 		If $useFFBarchST = 1 Then $listInfoDeploy = outsidecollector($nbSides,$listInfoDeploy)
-		Savetroop($listInfoDeploy, $CC, $King, $Queen, $Warden)
+			If $saveTroops = 0 Then
+				LaunchTroop2($listInfoDeploy, $CC, $King, $Queen, $Warden)
+			Else
+				Savetroop($listInfoDeploy, $CC, $King, $Queen, $Warden)
+			EndIf
 	Else
 		LaunchTroop2($listInfoDeploy, $CC, $King, $Queen, $Warden)
 	EndIf

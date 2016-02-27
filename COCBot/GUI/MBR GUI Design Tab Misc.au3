@@ -36,7 +36,7 @@ Local $x = 30, $y = 150
 			GetTranslated(7,19, "Elixir Full") & "|" & GetTranslated(7,20, "Reach Max. Trophy") & "|" & GetTranslated(7,153, "Dark Elixir Full") & "|" & GetTranslated(7,154, "All Storage (G+E+DE) Full") & "|" & _
 			GetTranslated(7,21, "Bot running for...") & "|" & GetTranslated(7,89, "Now (Train/Donate Only)") & "|" & _
 			GetTranslated(7,22, "Now (Donate Only)") & "|" & GetTranslated(7,23, "Now (Only stay online)") & "|" & GetTranslated(7,150, "W/Shield (Train/Donate Only)") & "|" & GetTranslated(7,151, "W/Shield (Donate Only)") & "|" & _
-			GetTranslated(7,152, "W/Shield (Only stay online)"), GetTranslated(7,89, -1))
+			GetTranslated(7,152, "W/Shield (Only stay online)") & "|" & GetTranslated(7,158, "gain Gold/h is less than") & "|" & GetTranslated(7,159, "gain Elixir/h is less than") & "|" & GetTranslated(7,160, "gain (Gold + Elixir)/h is less than"), GetTranslated(7,89, -1))
 			GUICtrlSetOnEvent(-1, "cmbBotCond")
 			GUICtrlSetState (-1, $GUI_DISABLE)
 		$cmbHoursStop = GUICtrlCreateCombo("", $x + 335, $y - 3, 80, 35, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
@@ -44,6 +44,11 @@ Local $x = 30, $y = 150
 			$sTxtHours = GetTranslated(7,25, "Hours")
 			GUICtrlSetData(-1, "-|1 " & GetTranslated(7,24, "Hour") & "|2 " & $sTxtHours & "|3 " & $sTxtHours & "|4 " & $sTxtHours & "|5 " & $sTxtHours & "|6 " & $sTxtHours & "|7 " & $sTxtHours & "|8 " & $sTxtHours & "|9 " & $sTxtHours & "|10 " & $sTxtHours & "|11 " & $sTxtHours & "|12 " & $sTxtHours& "|13 " & $sTxtHours & "|14 " & $sTxtHours & "|15 " & $sTxtHours & "|16 " & $sTxtHours & "|17 " & $sTxtHours & "|18 " & $sTxtHours & "|19 " & $sTxtHours & "|20 " & $sTxtHours & "|21 " & $sTxtHours & "|22 " & $sTxtHours & "|23 " & $sTxtHours & "|24 " & $sTxtHours, "-")
 			GUICtrlSetState (-1, $GUI_DISABLE)
+		$txtgainperhours = GUICtrlCreateInput("100000", $x + 340, $y - 3, 70, 20, BitOR($GUI_SS_DEFAULT_INPUT, $ES_CENTER, $ES_NUMBER))
+			$txtTip = GetTranslated(7,161, "Minimum Gold or Elixir or (GOLD + Elixir) Gain Per Hours value")
+			GUICtrlSetTip(-1, $txtTip)
+			GUICtrlSetLimit(-1, 7)
+			GUICtrlSetState (-1, $GUI_HIDE)
 	GUICtrlCreateGroup("", -99, -99, 1, 1)
 
 Local $x = 30, $y = 205

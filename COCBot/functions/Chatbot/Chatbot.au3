@@ -15,6 +15,7 @@
 
 #include <Process.au3>
 #include <Array.au3>
+#include <String.au3>
 
 Func ChatbotChatOpen() ; open the chat area
 	Click(18 ,380 , 1, 0, "") ; open chat
@@ -101,7 +102,12 @@ Func runHelper($msg, $isBotlibre) ; run a script to get a response from Botlibre
 
 		SetLog("waiting for chatbot helper...")
 		If  $isBotlibre = 1 Then
-			$link = "http://www.botlibre.com/rest/botlibre/form-chat?instance=165&message="
+			$oHTTP.Open("Get", "http://www.botlibre.com/rest/botlibre/form-get-all-instances?sort=monthlyConnects" , False)
+			$oHTTP.Send()
+			$Result = $oHTTP.ResponseText
+			local $botid = _StringBetween($Result, 'id="', '" name')
+			$ibotid = $botid[0]
+			$link = "http://www.botlibre.com/rest/botlibre/form-chat?instance="&$ibotid&"&message="
 			$oHTTP.Open("Get", $link & $msg , False)
 			$oHTTP.Send()
 			$Result = $oHTTP.ResponseText

@@ -976,6 +976,8 @@ Func saveConfig() ;Saves the controls settings to the config
 	IniWrite($config, "other", "minrestartelixir", GUICtrlRead($txtRestartElixir))
 	IniWrite($config, "other", "minrestartdark", GUICtrlRead($txtRestartDark))
 
+	IniWrite($config, "other", "mingainperhours", GUICtrlRead($txtgainperhours))
+
 
 	If GUICtrlRead($chkTrap) = $GUI_CHECKED Then
 		IniWrite($config, "other", "chkTrap", 1)

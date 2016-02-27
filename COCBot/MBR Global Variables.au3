@@ -699,7 +699,11 @@ Global $FirstStart = True
 Global $TPaused, $BlockInputPause = 0
 
 ; Halt/Restart Mode values
-Global $itxtRestartGold, $itxtRestartElixir, $itxtRestartDark
+Global $itxtRestartGold, $itxtRestartElixir, $itxtRestartDark,$itxtgainperhours
+
+Global $myHourlyStatsGold = ""
+Global $myHourlyStatsElixir =""
+
 
 
 ;Global $iWBMortar

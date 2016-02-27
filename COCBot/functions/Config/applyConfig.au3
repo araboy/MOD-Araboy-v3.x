@@ -1214,6 +1214,8 @@ Func applyConfig($bRedrawAtExit = True) ;Applies the data from config to the con
 	GUICtrlSetData($txtRestartElixir, $itxtRestartElixir)
 	GUICtrlSetData($txtRestartDark, $itxtRestartDark)
 
+	GUICtrlSetData($txtgainperhours, $itxtgainperhours)
+
 	If $ichkWalls = 1 Then
 		GUICtrlSetState($chkWalls, $GUI_CHECKED)
 	Else

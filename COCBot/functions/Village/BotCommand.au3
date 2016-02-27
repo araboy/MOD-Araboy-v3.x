@@ -88,6 +88,13 @@ Func BotCommand()
 					$bTrainEnabled = False
 					$bDonationEnabled = False
 				EndIf
+			Case 22
+				If	$myHourlyStatsGold <> "" And $myHourlyStatsGold < $txtgainperhours	Then $MeetCondStop = True
+			Case 23
+				If	$myHourlyStatsElixir <> "" And $myHourlyStatsElixir < $txtgainperhours	Then $MeetCondStop = True
+			Case 24
+				If  $myHourlyStatsGold <> "" And $myHourlyStatsElixir <> "" And ($myHourlyStatsGold + $myHourlyStatsElixir) < $txtgainperhours   Then $MeetCondStop = True
+
 		EndSwitch
 
 		If $MeetCondStop Then

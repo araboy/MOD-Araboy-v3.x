@@ -504,6 +504,9 @@ Func readConfig() ;Reads config and sets it to the variables
 		$itxtRestartElixir = IniRead($config, "other", "minrestartelixir", "25000")
 		$itxtRestartDark = IniRead($config, "other", "minrestartdark", "500")
 
+		$itxtgainperhours = IniRead($config, "other", "mingainperhours", "100000")
+
+
 		$ichkTrap = IniRead($config, "other", "chkTrap", "0")
 		$iChkCollect = IniRead($config, "other", "chkCollect", "1")
 		$ichkTombstones = IniRead($config, "other", "chkTombstones", "0")

@@ -203,6 +203,14 @@ Func cmbBotCond()
 		_GUICtrlComboBox_SetCurSel($cmbHoursStop, 0)
 		GUICtrlSetState($cmbHoursStop, $GUI_DISABLE)
 	EndIf
+	If _GUICtrlComboBox_GetCurSel($cmbBotCond) > 21 Then
+		GUICtrlSetState($cmbHoursStop, $GUI_HIDE)
+		GUICtrlSetState($txtgainperhours, $GUI_SHOW)
+	Else
+		GUICtrlSetState($txtgainperhours, $GUI_HIDE)
+		GUICtrlSetState($cmbHoursStop, $GUI_SHOW)
+	EndIf
+
 EndFunc   ;==>cmbBotCond
 
 Func chkTrap()
