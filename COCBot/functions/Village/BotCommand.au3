@@ -89,19 +89,19 @@ Func BotCommand()
 					$bDonationEnabled = False
 				EndIf
 			Case 22
-				If	$myHourlyStatsGold <> "" And $myHourlyStatsGold < _NumberFormat($txtgainperhours)	Then
+				If	$myHourlyStatsGold <> "" And $myHourlyStatsGold < _NumberFormat($itxtgainperhours)	Then
 					$MeetCondStop = True
-					SetLog("gained Gold/H: "& $myHourlyStatsGold & "is less than" & $txtgainperhours  , $COLOR_BLUE)
+					SetLog("gained Gold/H: "& $myHourlyStatsGold & " is less than " & _NumberFormat($itxtgainperhours)  , $COLOR_BLUE)
 				EndIf
 			Case 23
-				If	$myHourlyStatsElixir <> "" And $myHourlyStatsElixir < _NumberFormat($txtgainperhours)	Then
+				If	$myHourlyStatsElixir <> "" And $myHourlyStatsElixir < _NumberFormat($itxtgainperhours)	Then
 					$MeetCondStop = True
-					SetLog("gained Elixir/H: "& $myHourlyStatsGold & "is less than" & $txtgainperhours  , $COLOR_BLUE)
+					SetLog("gained Elixir/H: "& $myHourlyStatsGold & " is less than " & _NumberFormat($itxtgainperhours)  , $COLOR_BLUE)
 				EndIf
 			Case 24
-				If  $myHourlyStatsGold <> "" And $myHourlyStatsElixir <> "" And ($myHourlyStatsGold + $myHourlyStatsElixir) < _NumberFormat($txtgainperhours)   Then
+				If  $myHourlyStatsGold <> "" And $myHourlyStatsElixir <> "" And ($myHourlyStatsGold + $myHourlyStatsElixir) < _NumberFormat($itxtgainperhours)   Then
 					$MeetCondStop = True
-					SetLog("gained Gold and Elixir/H: "& $myHourlyStatsGold & "is less than" & $txtgainperhours  , $COLOR_BLUE)
+					SetLog("gained Gold and Elixir/H: "& $myHourlyStatsGold & " is less than " & _NumberFormat($itxtgainperhours)  , $COLOR_BLUE)
 				EndIf
 		EndSwitch
 
