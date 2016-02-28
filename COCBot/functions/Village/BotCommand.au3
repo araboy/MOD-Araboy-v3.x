@@ -101,7 +101,7 @@ Func BotCommand()
 			Case 24
 				If  $myHourlyStatsGold <> "" And $myHourlyStatsElixir <> "" And ($myHourlyStatsGold + $myHourlyStatsElixir) < $itxtgainperhours   Then
 					$MeetCondStop = True
-					SetLog("gained Gold and Elixir/H: "& _NumberFormat($myHourlyStatsGold) & " is less than " & _NumberFormat($itxtgainperhours)  , $COLOR_BLUE)
+					SetLog("gained Gold and Elixir/H: "& _NumberFormat($myHourlyStatsGold + $myHourlyStatsElixir) & " is less than " & _NumberFormat($itxtgainperhours)  , $COLOR_BLUE)
 				EndIf
 		EndSwitch
 
