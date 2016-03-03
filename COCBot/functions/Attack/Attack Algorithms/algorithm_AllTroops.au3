@@ -72,7 +72,9 @@ EndFunc   ;==>useTownHallSnipe
 Func useSmartDeploy() ;Gets infomation about the red area for Smart Deploy
 		SetLog("Calculating Smart Attack Strategy", $COLOR_BLUE)
 		Local $hTimer = TimerInit()
-
+		_WinAPI_DeleteObject($hBitmapFirst)
+		$hBitmapFirst = _CaptureRegion2()
+		_GetRedArea()
 		SetLog("Calculated  (in " & Round(TimerDiff($hTimer) / 1000, 2) & " seconds) :")
 		;SetLog("	[" & UBound($PixelTopLeft) & "] pixels TopLeft")
 		;SetLog("	[" & UBound($PixelTopRight) & "] pixels TopRight")
@@ -114,10 +116,6 @@ Func useSmartDeploy() ;Gets infomation about the red area for Smart Deploy
 					EndIf
 					SetLog("[" & $truegoldminenumber[0] & "] Gold Mines")
 			EndIf
-
-			_WinAPI_DeleteObject($hBitmapFirst)
-			$hBitmapFirst = _CaptureRegion2()
-		    _GetRedArea()
 
 			; If drop troop near elixir collector
 			If ($iChkSmartAttack[$iMatchMode][1] = 1) Then
