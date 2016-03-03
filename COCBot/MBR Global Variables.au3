@@ -427,6 +427,7 @@ Global $percentCollectors
 Global $useFFBarchST
 Global $icmbInsideCol
 Global $FourFinger = 0
+Global $tilefromredline =0
 
 Global $TrainSpecial = 1 ;0=Only trains after atk. Setting is automatic
 Global $cBarbarian = 0, $cArcher = 0, $cGoblin = 0, $cGiant = 0, $cWallbreaker = 0, $cWizard = 0, $cBalloon = 0, $cDragon = 0, $cPekka = 0, $cMinion = 0, $cHogs = 0, $cValkyrie = 0, $cGolem = 0, $cWitch = 0, $cLavaHound = 0
@@ -703,7 +704,8 @@ Global $itxtRestartGold, $itxtRestartElixir, $itxtRestartDark,$itxtgainperhours
 
 Global $myHourlyStatsGold = ""
 Global $myHourlyStatsElixir =""
-
+Global $topgoldloot = 0
+Global $topelixirloot = 0
 
 
 ;Global $iWBMortar
@@ -1061,6 +1063,15 @@ Global $DestroyedDarkIMG0, $DestroyedDarkIMG1, $DestroyedDarkIMG2, $DestroyedDar
 
 
 
+
+;Mod AttackHour ----------------------------------------------
+Global $iplannedattackhoursenable
+Global $iPlannedAttackHours[24]
+Global $fullArmy1 = False
+Global $hourAttack
+Global Const $iDelayWaitAttack = 120000
+;--> Mod AttackHour --------------------------------------------
+
 ;chat =================================================
 
 Global $ClanMessages = ""
@@ -1104,6 +1115,8 @@ Global $ChatbotQueuedChats[0]
 Global $ChatbotReadQueued = False
 Global $ChatbotReadInterval = 0
 Global $ChatbotIsOnInterval = False
+Global $iCheckSumchat = 0
+
 
 
 ;adjust resource coordinates returned by dll ( [0] adjust coord for resource level 0-4, [1] adj. for level 5... [8] adjust coord. for level 12 )
@@ -1189,3 +1202,7 @@ Global $ichkGoldSwitchMax, $itxtMaxGoldAmount, $icmbGoldMaxProfile, $ichkGoldSwi
 Global $ichkElixirSwitchMax, $itxtMaxElixirAmount, $icmbElixirMaxProfile, $ichkElixirSwitchMin, $itxtMinElixirAmount, $icmbElixirMinProfile
 Global $ichkDESwitchMax, $itxtMaxDEAmount, $icmbDEMaxProfile, $ichkDESwitchMin, $itxtMinDEAmount, $icmbDEMinProfile
 Global $ichkTrophySwitchMax, $itxtMaxTrophyAmount, $icmbTrophyMaxProfile, $ichkTrophySwitchMin, $itxtMinTrophyAmount, $icmbTrophyMinProfile
+
+; CoCStats
+Global $ichkCoCStats = 0
+Global $MyApiKey = ""

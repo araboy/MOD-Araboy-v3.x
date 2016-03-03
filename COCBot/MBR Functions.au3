@@ -265,3 +265,4 @@
 #include "functions\Attack\unitInfo.au3"
 #include "functions\Village\ClanHop.au3"
 #include "functions\Village\ProfileSwitch.au3"
+#include "functions\Other\CoCStats.com.au3"

@@ -209,6 +209,7 @@ Func readConfig() ;Reads config and sets it to the variables
 		$useFFBarchST = IniRead($config, "advanced", "chkChangeFF", "0")
 		$percentCollectors  = IniRead($config, "advanced", "txtTHpercentCollectors", "80")
 		$icmbInsideCol = IniRead($config, "advanced", "cmbInsideCol", "1")
+		$tilefromredline  = IniRead($config, "advanced", "txttilefromredline", "5")
 
 
 
@@ -747,6 +748,16 @@ Func readConfig() ;Reads config and sets it to the variables
    $GlobalMessages2 = StringSplit(IniRead($config, "GlobalChat", "globalMsg2", "ba|ca|da|fa|ga"), "|", 2)
    $GlobalMessages3 = StringSplit(IniRead($config, "GlobalChat", "globalMsg2", "ba|ca|da|fa|ga"), "|", 2)
    $GlobalMessages4 = StringSplit(IniRead($config, "GlobalChat", "globalMsg4", "ba|ca|da|fa|ga"), "|", 2)
+
+	;Mod AttackHour -----------------------------------------------------------------------
+		$iPlannedAttackHoursEnable 		= IniRead($config, "option", "AttackHoursEnable", "0")
+		$iPlannedAttackHours 			= StringSplit(IniRead($config, "option", "AttackHours", "1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1"),"|", $STR_NOCOUNT)
+	;--> Mod AttackHour -----------------------------------------------------------------------
+
+	; CoCStats -----------------------------------------------------------------------
+	$ichkCoCStats = IniRead($config, "Stats", "chkCoCStats", "0")
+	$MyApiKey = IniRead($config, "Stats", "txtAPIKey", "")
+
 
 	Else
 		Return False

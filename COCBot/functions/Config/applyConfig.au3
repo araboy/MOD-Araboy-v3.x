@@ -434,6 +434,7 @@ Func applyConfig($bRedrawAtExit = True) ;Applies the data from config to the con
 	chkChangeFF()
 	GUICtrlSetData($txtTHpercentCollectors, $percentCollectors)
 	_GUICtrlComboBox_SetCurSel($cmbInsideCol, $icmbInsideCol)
+	GUICtrlSetData($txttilefromredline, $tilefromredline)
 
 
 
@@ -1892,6 +1893,39 @@ Func applyConfig($bRedrawAtExit = True) ;Applies the data from config to the con
 	GUICtrlSetData($editGeneric,_ArrayToString($ClanMessages, @CRLF))
 	Global_Chat()
 	Clan_Chat()
+
+	;Mod AttackHour -----------------------------------------------------------
+	If $iPlannedAttackHoursEnable = 1 Then
+		GUICtrlSetState($chkAttackHours, $GUI_CHECKED)
+	Else
+		GUICtrlSetState($chkAttackHours, $GUI_UNCHECKED)
+	EndIf
+	chkAttackHours()
+	For $i = 0 To 23
+		If $iPlannedDonateHours[$i] = 1 Then
+			GUICtrlSetState(Eval("chkDonateHours" & $i), $GUI_CHECKED)
+		Else
+			GUICtrlSetState(Eval("chkDonateHours" & $i), $GUI_UNCHECKED)
+		EndIf
+	Next
+	For $i = 0 To 23
+		If $iPlannedAttackHours[$i] = '1' Then
+			GUICtrlSetState(Eval("chkAttackHours" & $i), $GUI_CHECKED)
+		Else
+			GUICtrlSetState(Eval("chkAttackHours" & $i), $GUI_UNCHECKED)
+		EndIf
+	Next
+	;--> Mod AttackHour -------------------------------------------------------------
+
+	; CoCStats -------------------------------------------------------------
+	If $ichkCoCStats = 1 Then
+		GUICtrlSetState($chkCoCStats, $GUI_CHECKED)
+	Else
+		GUICtrlSetState($chkCoCStats, $GUI_UNCHECKED)
+	EndIf
+	GUICtrlSetData($txtAPIKey, $MyApiKey)
+	chkCoCStats()
+
 
 
 	; Reenabling window redraw

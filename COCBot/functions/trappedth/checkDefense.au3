@@ -71,8 +71,8 @@ Func checkDefense()
 ;~ 	$ih = $iBottom -  $iTop
 
 ;~ 	_CaptureTH($iLeft , $iTop , $iRight , $iBottom , False)
-	_CaptureRegion()
-	$sendHBitmap = _GDIPlus_BitmapCreateHBITMAPFromBitmap($hBitmap)
+
+	$sendHBitmap = _CaptureRegion2()
 ;~ 	$DefaultCocSearchArea = "70|70|720|540"
 	$DefaultCocSearchArea = $iLeft &"|"& $iTop &"|"& $iRight &"|"& $iBottom
 	$DefaultCocDiamond = "430,70|787,335|430,605|67,333"
@@ -83,7 +83,7 @@ Func checkDefense()
 				$defTolerancee = StringSplit (Execute("$DefImages" & $t & "["& $i & "]") , "T")
 				$Tolerance = $defTolerancee[2] + ($tolerancedefOffset/100)
 				$FFile = @ScriptDir & "\images\Defense\" & $ppath[$t] & "\" & Execute("$DefImages" & $t & "["& $i & "]")
-				$res = DllCall($LibDir & "\ImgLoc.dll", "str", "SearchTile", "handle", $sendHBitmap, "str", $FFile , "float", $Tolerance, "str" ,$DefaultCocSearchArea, "str",$DefaultCocDiamond )
+				$res = DllCall($pImgLib, "str", "SearchTile", "handle", $sendHBitmap, "str", $FFile , "float", $Tolerance, "str" ,$DefaultCocSearchArea, "str",$DefaultCocDiamond )
 				$DefLocation = StringSplit($res[0],"|")
 ;~ 				$DefLocation = _ImageSearchArea(@ScriptDir & "\images\Defense\" & $ppath[$t] & "\" & Execute("$DefImages" & $t & "["& $i & "]"), 1,0,0,$iw,$ih, $Defx, $Defy, $defTolerance) ; Getting Defense Location
 

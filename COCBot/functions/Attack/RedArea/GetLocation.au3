@@ -25,8 +25,7 @@ EndFunc   ;==>GetLocationMine
 
 Func GetLocationMine2()
 	Global $goldmineImages
-	_CaptureRegion()
-	$sendHBitmap = _GDIPlus_BitmapCreateHBITMAPFromBitmap($hBitmap)
+	$sendHBitmap = _CaptureRegion2()
 	$DefaultCocSearchArea = "70|70|720|540"
 	$DefaultCocDiamond = "430,70|787,335|430,605|67,333"
 	If $iDetectedImageType = 0 Then
@@ -58,7 +57,7 @@ Func GetLocationMine2()
 			$FFile = @ScriptDir & "\images\Goldmine\"  & $goldmineImages[$nn]
 			local $goldTolerance = StringSplit ($goldmineImages[$nn] , "T")
 			local $Tolerance = $goldTolerance[2]
-			$res = DllCall($LibDir & "\ImgLoc.dll", "str", "SearchTile", "handle", $sendHBitmap, "str", $FFile , "float", $Tolerance, "str" ,$DefaultCocSearchArea, "str",$DefaultCocDiamond )
+			$res = DllCall($pImgLib, "str", "SearchTile", "handle", $sendHBitmap, "str", $FFile , "float", $Tolerance, "str" ,$DefaultCocSearchArea, "str",$DefaultCocDiamond )
 			$goldLocation = StringSplit($res[0],"|")
 			;Setlog("dll result: " & _ArrayToString($goldLocation) ,$COLOR_TEAL)
 			If $goldLocation[1] > 0 Then

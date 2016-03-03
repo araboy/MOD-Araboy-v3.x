@@ -57,7 +57,7 @@ Func _FindPixelCloser($arrPixel, $pixel, $nb = 1)
 		Next
 		ReDim $arrPixelCloser[UBound($arrPixelCloser) + 1]
 		$arrPixelCloser[UBound($arrPixelCloser) - 1] = $PixelCloser
-		FindPixelDistance( $pixel , $PixelCloser )
 	Next
+	FindPixelDistance( $pixel , $PixelCloser )
 	Return $arrPixelCloser
 EndFunc   ;==>_FindPixelCloser

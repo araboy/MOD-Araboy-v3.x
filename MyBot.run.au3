@@ -38,7 +38,7 @@ EndIf
 #include "COCBot\MBR Global Variables.au3"
 
 $sBotVersion = "v5.2.1" ;~ Don't add more here, but below. Version can't be longer than vX.y.z because it it also use on Checkversion()
-$sBotTitle = "My Bot " & $sBotVersion & " MOD Araboy V3.1.2" ;~ Don't use any non file name supported characters like \ / : * ? " < > |
+$sBotTitle = "My Bot " & $sBotVersion & " MOD Araboy V3.2" ;~ Don't use any non file name supported characters like \ / : * ? " < > |
 
 Opt("WinTitleMatchMode", 3) ; Window Title exact match mode
 #include "COCBot\functions\Main Screen\Android.au3"
@@ -49,7 +49,6 @@ If $aCmdLine[0] < 2 Then
 EndIf
 ; Update Bot title
 $sBotTitle = $sBotTitle & "(" & ($AndroidInstance <> "" ? $AndroidInstance : $Android) & ")"
-
 If $bBotLaunchOption_Restart = True Then
    If CloseRunningBot($sBotTitle) = True Then
 	  ; wait for Mutexes to get disposed
@@ -82,7 +81,6 @@ SetDebugLog("My Bot is " & ($OnlyInstance ? "" : "not ") & "the only running ins
 ;multilanguage
 #include "COCBot\functions\Other\Multilanguage.au3"
 DetectLanguage()
-
 #include "COCBot\MBR GUI Design.au3"
 #include "COCBot\MBR GUI Control.au3"
 #include "COCBot\MBR Functions.au3"
@@ -159,6 +157,13 @@ WEnd
 Func runBot() ;Bot that runs everything in order
 	$TotalTrainedTroops = 0
 	While 1
+		;ModBoju
+		Local $hour = StringSplit(_NowTime(4), ":", $STR_NOCOUNT)
+		If $hourAttack <> $hour[0] then
+			$hourAttack = $hour[0]
+			;GUICtrlSetData($txthourAttack, $hourAttack)
+		EndIf
+		;-->ModBoju
 		$Restart = False
 		$fullArmy = False
 		$CommandStop = -1
@@ -213,6 +218,8 @@ Func runBot() ;Bot that runs everything in order
 			ReArm()
 				If _Sleep($iDelayRunBot3) Then Return
 				If $Restart = True Then ContinueLoop
+		;ModBoju
+		If ($iPlannedAttackHours[$hourAttack] <> 0 and $iPlannedAttackHoursEnable = 1) or $iPlannedAttackHoursEnable = 0  or $fullArmy1 = False Then
 			ReplayShare($iShareAttackNow)
 				If _Sleep($iDelayRunBot3) Then Return
 				If $Restart = True Then ContinueLoop
@@ -260,6 +267,7 @@ Func runBot() ;Bot that runs everything in order
 				If _Sleep($iDelayRunBot3) Then Return
 				If $Restart = True Then ContinueLoop
 			Idle()
+				$fullArmy1 = $fullArmy
 				If _Sleep($iDelayRunBot3) Then Return
 				If $Restart = True Then ContinueLoop
 			SaveStatChkTownHall()
@@ -276,6 +284,11 @@ Func runBot() ;Bot that runs everything in order
 				If _Sleep($iDelayRunBot1) Then Return
 				If $Restart = True Then ContinueLoop
 			EndIf
+		Else
+			SetLog("Attacking Not Planned, Skipped.., So Waiting", $COLOR_RED)
+			If _SleepStatus($iDelayWaitAttack) Then Return False
+		EndIf
+		;ModBoju
 
 		Else ;When error occours directly goes to attack
 			If $Is_SearchLimit = True Then
@@ -384,6 +397,9 @@ Func Idle() ;Sequence that runs until Full Army
 EndFunc   ;==>Idle
 
 Func AttackMain() ;Main control for attack functions
+	;ModBoju
+	If ($iPlannedAttackHours[$hourAttack] <> 0 and $iPlannedAttackHoursEnable = 1) or $iPlannedAttackHoursEnable = 0 Then
+		$fullArmy1 = False
 	If $iChkUseCCBalanced = 1 or $iChkUseCCBalancedCSV = 1 Then ;launch profilereport() only if option balance D/R it's activated
 		ProfileReport()
 		If _Sleep($iDelayAttackMain1) Then Return
@@ -435,6 +451,10 @@ Func AttackMain() ;Main control for attack functions
 	ReturnHome($TakeLootSnapShot)
 		If _Sleep($iDelayAttackMain2) Then Return
 	Return True
+	Else
+		SetLog("Attacking Not Planned, Skipped..", $COLOR_RED)
+	EndIf
+	;ModBoju
 EndFunc   ;==>AttackMain
 
 Func Attack() ;Selects which algorithm

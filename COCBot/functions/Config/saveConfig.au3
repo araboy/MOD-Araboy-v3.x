@@ -439,6 +439,7 @@ Func saveConfig() ;Saves the controls settings to the config
 	EndIf
 	IniWrite($config, "advanced", "txtTHpercentCollectors", GUICtrlRead($txtTHpercentCollectors))
 	IniWrite($config, "advanced", "cmbInsideCol", _GUICtrlComboBox_GetCurSel($cmbInsideCol))
+	IniWrite($config, "advanced", "txttilefromredline", GUICtrlRead($txttilefromredline))
 
 
 
@@ -1785,6 +1786,34 @@ Func saveConfig() ;Saves the controls settings to the config
 
    IniWrite($config, "ClanChat", "genericMsg", $cGeneric)
    IniWrite($config, "ClanChat", "responseMsg", $cResp)
+
+	;Mod AttackHour -----------------------------------------------------------------
+	Local $string = ""
+	For $i = 0 To 23
+		If GUICtrlRead(Eval("chkAttackHours" & $i)) = $GUI_CHECKED Then
+			$string &= "1|"
+		Else
+			$string &= "0|"
+		EndIf
+	Next
+	IniWrite($config, "option", "AttackHours", $string)
+
+	If GUICtrlRead($chkAttackHours) = $GUI_CHECKED Then
+		IniWrite($config, "option", "AttackHoursEnable", 1)
+	Else
+		IniWrite($config, "option", "AttackHoursEnable", 0)
+	EndIf
+	;--> Mod AttackHour -----------------------------------------------------------------
+
+	; CoCStats ----------------------------------------------------------------
+	If GUICtrlRead($chkCoCStats) = $GUI_CHECKED Then
+		IniWrite($config, "Stats", "chkCoCStats", "1")
+	Else
+		IniWrite($config, "Stats", "chkCoCStats", "0")
+	EndIf
+	IniWrite($config, "Stats", "txtAPIKey", GUICtrlRead($txtAPIKey))
+
+
 
 
 	If $hFile <> -1 Then FileClose($hFile)

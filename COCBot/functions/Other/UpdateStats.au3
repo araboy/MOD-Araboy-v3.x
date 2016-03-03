@@ -386,8 +386,18 @@ Func UpdateStats()
 		If $iDarkStart <> "" Then
 			GUICtrlSetData($lblResultDEHourNow, _NumberFormat(Round($iDarkTotal / (Int(TimerDiff($sTimer) + $iTimePassed)) * 3600 * 1000)) & " / h")      ;GUI BOTTOM
 		EndIf
-
 	EndIf
+
+	If Number($iGoldLast) > Number($topgoldloot) Then
+		$topgoldloot = $iGoldLast
+		GUICtrlSetData($lbltopgoldloot,_NumberFormat($topgoldloot))
+	EndIf
+
+	If Number($iElixirLast) > Number($topelixirloot) Then
+		$topelixirloot = $iElixirLast
+		GUICtrlSetData($lbltopelixirloot,_NumberFormat($topelixirloot))
+	EndIf
+
 
 	If $ResetStats = 1 Then
 		$ResetStats = 0
@@ -406,10 +416,14 @@ Func ResetStats()
 	GUICtrlSetState($lblLastAttackBonusTemp, $GUI_SHOW)
 	GUICtrlSetState($lblTotalLootTemp, $GUI_SHOW)
 	GUICtrlSetState($lblHourlyStatsTemp, $GUI_SHOW)
+	GUICtrlSetData($lbltopgoldloot,"")
+	GUICtrlSetData($lbltopelixirloot,"")
 	$iGoldStart = $iGoldCurrent
 	$iElixirStart = $iElixirCurrent
 	$iDarkStart = $iDarkCurrent
 	$iTrophyStart = $iTrophyCurrent
+	$topgoldloot = 0
+	$topelixirloot = 0
 	$iGoldTotal = 0
 	$iElixirTotal = 0
 	$iDarkTotal = 0

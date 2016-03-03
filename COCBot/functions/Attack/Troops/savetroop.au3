@@ -651,7 +651,7 @@ Func FindPixelDistance($iPixel = 0, $iPixelCloser = 0)
 		If $countFindPixCloser < UBound($PixelNearCollector) Then
 			Local $DistancePixeltoPixCLoser = Sqrt(($iPixelCloser[0] - $iPixel[0]) ^ 2 + ($iPixelCloser[1] - $iPixel[1]) ^ 2)
 			;setlog("Distance is " & $DistancePixeltoPixCLoser)
-			If $DistancePixeltoPixCLoser < 51 Then $countCollectorexposed += 1
+			If $DistancePixeltoPixCLoser < ($tilefromredline * 10) Then $countCollectorexposed += 1
 			$countFindPixCloser += 1
 		EndIf
 	EndIf

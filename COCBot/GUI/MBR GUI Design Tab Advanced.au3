@@ -18,9 +18,9 @@
 ;~ -------------------------------------------------------------
  $tabAttackAdv = GUICtrlCreateTabItem(GetTranslated(4,1, "Attack Adv."))
 	Local $x = 30, $y = 150
-	$grpAtkOptions = GUICtrlCreateGroup(GetTranslated(4,2, "Attack Options"), $x - 20, $y - 20, 145, 85)
+	$grpAtkOptions = GUICtrlCreateGroup(GetTranslated(4,2, "Attack Options"), $x - 20, $y - 20, 220, 85)
 		$y -=5
-		$chkAttackNow = GUICtrlCreateCheckbox(GetTranslated(4,3, "Attack Now! option."), $x-13, $y, -1, -1)
+		$chkAttackNow = GUICtrlCreateCheckbox(GetTranslated(4,3, "Attack Now! option."), $x-10, $y, -1, -1)
 			$txtTip = GetTranslated(4,4, "Check this if you want the option to have an 'Attack Now!' button next to") & @CRLF & GetTranslated(4,5, "the Start and Pause buttons to bypass the dead base or all base search values.") & @CRLF & GetTranslated(4,6, "The Attack Now! button will only appear when searching for villages to Attack.")
 			GUICtrlSetTip(-1, $txtTip)
 			GUICtrlSetOnEvent(-1, "chkAttackNow")
@@ -37,30 +37,10 @@
 			GUICtrlSetTip(-1, $txtTip)
 			GUICtrlSetState(-1, $GUI_DISABLE)
 		$y +=22
-		$chkAttackTH = GUICtrlCreateCheckbox(GetTranslated(4,10, "Attack Townhall Outside"), $x-13, $y, -1, -1)
+		$chkAttackTH = GUICtrlCreateCheckbox(GetTranslated(4,10, "Attack Townhall Outside"), $x-10, $y, -1, -1)
 			GUICtrlSetTip(-1, GetTranslated(4,11, "Check this to Attack an exposed Townhall first. (Townhall outside of Walls)") & @CRLF & GetTranslated(4,12, "TIP: Also tick 'Meet Townhall Outside' on the Search tab if you only want to search for bases with exposed Townhalls."))
 
 	GUICtrlCreateGroup("", -99, -99, 1, 1)
-
-
-	Local $x = 157, $y = 130
-	$grpSaveTroops = GUICtrlCreateGroup(GetTranslated(4,118,"Save Troops"), $x , $y , 74, 85)
-		Local $txtTip = GetTranslated(4,119,"If collectors outside less than Percent Do Action")
-		$chkChangeFF = GUICtrlCreateCheckbox(GetTranslated(4,120,"outside col"), $x + 2, $y +12, -1, -1)
-		GUICtrlSetTip(-1, $txtTip)
-		GUICtrlSetOnEvent(-1, "chkChangeFF")
-		$txtTHpercentCollectors = GUICtrlCreateInput("80", $x + 5 , $y + 34, 21, 21, BitOR($GUI_SS_DEFAULT_INPUT, $ES_CENTER, $ES_NUMBER))
-		GUICtrlSetTip(-1, $txtTip)
-		GUICtrlSetLimit(-1, 3)
-		$lblChangeFF = GUICtrlCreateLabel(GetTranslated(4,121,"% Use "), $x + 30 , $y + 39, -1, -1)
-		GUICtrlSetTip(-1, $txtTip)
-		$cmbInsideCol = GUICtrlCreateCombo("", $x + 3, $y +58, 64, 21, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
-		GUICtrlSetData(-1, "4Sides|4Fingers|Return", "4Fingers")
-		GUICtrlCreateGroup("", -99, -99, 1, 1)
-
-
-
-
 
 	Local $x = 255, $y = 150
 	$grpTHSnipeWhileTrainOptions = GUICtrlCreateGroup(GetTranslated(4,13, "TH Snipe"), $x - 20, $y - 20, 225, 375)

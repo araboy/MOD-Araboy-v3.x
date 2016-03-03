@@ -149,6 +149,21 @@ $btnResetStats = GUICtrlCreateButton(GetTranslated(11,31, "Reset Stats"), $x + 1
 GUICtrlSetOnEvent(-1, "btnResetStats")
 GUICtrlSetState(-1, $GUI_DISABLE)
 
+$x = 10
+
+GUICtrlCreateIcon($pIconLib, $eIcnGold, $x , $y, 16, 16)
+$lbltopgold = GUICtrlCreateLabel(GetTranslated(11,104, "Top Loot: "), $x + 10, $y + 2, 55, 17, $SS_RIGHT)
+$lbltopgoldloot = GUICtrlCreateLabel("", $x + 60, $y + 2, 55, 17, $SS_RIGHT)
+$txtTip = GetTranslated(11,102, "Top Gold gained")
+GUICtrlSetTip(-1, $txtTip)
+
+GUICtrlCreateIcon($pIconLib, $eIcnElixir, $x + 150 , $y, 16, 16)
+$lbltopelixir = GUICtrlCreateLabel(GetTranslated(11,104, "Top Loot: "), $x + 160, $y + 2, 55, 17, $SS_RIGHT)
+$lbltopelixirloot = GUICtrlCreateLabel("", $x + 200, $y + 2, 55, 17, $SS_RIGHT)
+$txtTip = GetTranslated(11,103, "Top Elixir gained")
+GUICtrlSetTip(-1, $txtTip)
+
+
 $x = 30
 $y = 260
 $grpStatsMisc = GUICtrlCreateGroup(GetTranslated(11,32, "Stats: Misc"), $x - 20, $y - 20, 450, 140)

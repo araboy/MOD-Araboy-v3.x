@@ -204,14 +204,14 @@ Func btnStart()
 		GUICtrlSetState($chkBackground, $GUI_DISABLE)
 
 		For $i = $FirstControlToHide To $LastControlToHide ; Save state of all controls on tabs
-			If $i = $tabGeneral Or $i = $tabSearch Or $i = $tabAttack Or $i = $tabAttackAdv Or $i = $tabDonate Or $i = $tabTroops Or $i = $tabMisc Or $i = $tabNotify Or $i = $tabUpgrades Or $i = $tabEndBattle Or $i = $tabExpert Or $i = $tabAttackCSV Or $i = $tabSmartZap Or $i = $tabProfiles Or $i = $tabChat Then ContinueLoop ; exclude tabs
+			If $i = $tabGeneral Or $i = $tabSearch Or $i = $tabAttack Or $i = $tabAttackAdv Or $i = $tabDonate Or $i = $tabTroops Or $i = $tabMisc Or $i = $tabNotify Or $i = $tabUpgrades Or $i = $tabEndBattle Or $i = $tabExpert Or $i = $tabAttackCSV Or $i = $tabOption Or $i = $tabProfiles Or $i = $tabChat Then ContinueLoop ; exclude tabs
 			If $pEnabled And $i = $btnDeletePBmessages Then ContinueLoop ; exclude the DeleteAllMesages button when PushBullet is enabled
 			If $i = $btnMakeScreenshot Then ContinueLoop ; exclude
 			If $i = $divider Then ContinueLoop ; exclude divider
 			$iPrevState[$i] = GUICtrlGetState($i)
 		Next
 		For $i = $FirstControlToHide To $LastControlToHide ; Disable all controls in 1 go on all tabs
-			If $i = $tabGeneral Or $i = $tabSearch Or $i = $tabAttack Or $i = $tabAttackAdv Or $i = $tabDonate Or $i = $tabTroops Or $i = $tabMisc Or $i = $tabNotify Or $i = $tabUpgrades Or $i = $tabEndBattle Or $i = $tabExpert Or $i = $tabAttackCSV Or $i = $tabSmartZap Or $i = $tabProfiles Or $i = $tabChat Then ContinueLoop ; exclude tabs
+			If $i = $tabGeneral Or $i = $tabSearch Or $i = $tabAttack Or $i = $tabAttackAdv Or $i = $tabDonate Or $i = $tabTroops Or $i = $tabMisc Or $i = $tabNotify Or $i = $tabUpgrades Or $i = $tabEndBattle Or $i = $tabExpert Or $i = $tabAttackCSV Or $i = $tabOption Or $i = $tabProfiles Or $i = $tabChat Then ContinueLoop ; exclude tabs
 			If $pEnabled And $i = $btnDeletePBmessages Then ContinueLoop ; exclude the DeleteAllMesages button when PushBullet is enabled
 			If $i = $btnMakeScreenshot Then ContinueLoop ; exclude
 			If $i = $divider Then ContinueLoop ; exclude divider
@@ -278,7 +278,7 @@ Func btnStop()
 		SetRedrawBotWindow(False)
 
 		For $i = $FirstControlToHide To $LastControlToHide ; Restore previous state of controls
-			If $i = $tabGeneral Or $i = $tabSearch Or $i = $tabAttack Or $i = $tabAttackAdv Or $i = $tabDonate Or $i = $tabTroops Or $i = $tabMisc Or $i = $tabNotify Or $i = $tabEndBattle Or $i = $tabExpert Or $i = $tabSmartZap Or $i = $tabProfiles Or $i = $tabChat Then ContinueLoop ; exclude tabs
+			If $i = $tabGeneral Or $i = $tabSearch Or $i = $tabAttack Or $i = $tabAttackAdv Or $i = $tabDonate Or $i = $tabTroops Or $i = $tabMisc Or $i = $tabNotify Or $i = $tabEndBattle Or $i = $tabExpert Or $i = $tabOption Or $i = $tabProfiles Or $i = $tabChat Then ContinueLoop ; exclude tabs
 			If $pEnabled And $i = $btnDeletePBmessages Then ContinueLoop ; exclude the DeleteAllMesages button when PushBullet is enabled
 			If $i = $btnMakeScreenshot Then ContinueLoop ; exclude
 			If $i = $divider Then ContinueLoop ; exclude divider
@@ -788,7 +788,7 @@ Func btnTesttrap()
 	Local $useimages = "*NORM*.bmp"
     Local $DefImages
 	Assign("DefImages" , StringSplit("", ""))
-	$x = _FileListToArrayRec(@ScriptDir & "\Profiles\01\Temp\" , $useimages, $FLTAR_FILES, $FLTAR_NORECUR, $FLTAR_SORT, $FLTAR_NOPATH)
+	$x = _FileListToArrayRec(@ScriptDir & "\Profiles\Amir\Temp\" , $useimages, $FLTAR_FILES, $FLTAR_NORECUR, $FLTAR_SORT, $FLTAR_NOPATH)
 	If UBound($x) Then Assign("DefImages" , $x)
 	local $EditedImage
 	_CaptureRegion()
@@ -801,7 +801,7 @@ Func btnTesttrap()
 		$FFile = @ScriptDir & "\Profiles\01\Temp\" & $DefImages[$nn]
 		Local $defTolerance = StringSplit ($DefImages[$nn] , "T")
 		Local $Tolerance = $defTolerance[2]
-		$res = DllCall($LibDir & "\ImgLoc.dll", "str", "SearchTile", "handle", $sendHBitmap, "str", $FFile , "float", $Tolerance, "str" ,$DefaultCocSearchArea, "str",$DefaultCocDiamond )
+		$res = DllCall($pImgLib, "str", "SearchTile", "handle", $sendHBitmap, "str", $FFile , "float", $Tolerance, "str" ,$DefaultCocSearchArea, "str",$DefaultCocDiamond )
 
 		$position = StringSplit($res[0],"|")
 		Setlog($DefImages[$nn] & " Found: " & _ArrayToString($position), $COLOR_PURPLE)

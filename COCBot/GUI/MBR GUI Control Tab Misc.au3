@@ -362,5 +362,13 @@ Func cmbLanguage()
 	Local $sLanguageIndex = _ArraySearch($aLanguageFile, $aLanguage[_GUICtrlComboBox_GetCurSel($cmbLanguage) + 1])
 
 	$sLanguage = $aLanguageFile[$sLanguageIndex][0] ; the filename = 0, the display name = 1
-	MsgBox("", "", "Restart Bot to load program with new language: " & $aLanguageFile[$sLanguageIndex][1] & " (" & $sLanguage & ")")
+    Local $iMsgBoxAnswer = MsgBox(308, "", "Restart Bot to load program with new language: " & $aLanguageFile[$sLanguageIndex][1] & " (" & $sLanguage & ")")
+    If $iMsgBoxAnswer <> 6 Then Return ; Not Yes so return
+	saveConfig()
+    If @Compiled Then
+        Run(FileGetShortName(@ScriptFullPath))
+    Else
+        Run(FileGetShortName(@AutoItExe) & " " & FileGetShortName(@ScriptFullPath))
+    EndIf
+    Exit
 EndFunc   ;==>cmbLanguage

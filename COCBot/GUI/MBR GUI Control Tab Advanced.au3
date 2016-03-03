@@ -50,18 +50,6 @@ Func chkAttackNow()
 	EndIf
 EndFunc   ;==>chkAttackNow
 
-Func chkChangeFF()
-	If GUICtrlRead($chkChangeFF) = $GUI_CHECKED Then
-		GUICtrlSetState($lblChangeFF, $GUI_ENABLE)
-		GUICtrlSetState($txtTHpercentCollectors, $GUI_ENABLE)
-		GUICtrlSetState($cmbInsideCol, $GUI_ENABLE)
-	Else
-		GUICtrlSetState($lblChangeFF, $GUI_DISABLE)
-		GUICtrlSetState($txtTHpercentCollectors, $GUI_DISABLE)
-		GUICtrlSetState($cmbInsideCol, $GUI_DISABLE)
-	EndIf
-EndFunc ;==>chksavetroop
-
 Func chkSnipeWhileTrain()
 	If GUICtrlRead($ChkSnipeWhileTrain) = $GUI_CHECKED Then
 		$iChkSnipeWhileTrain = 1

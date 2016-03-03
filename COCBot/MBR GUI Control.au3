@@ -59,7 +59,7 @@ AtkLogHead()
 #include "GUI\MBR GUI Control Tab Notify.au3"
 #include "GUI\MBR GUI Control Tab Expert.au3"
 #include "GUI\MBR GUI Control Tab Stats.au3"
-#include "GUI\MBR GUI Control Tab SmartZap.au3"
+#include "GUI\MBR GUI Control Tab Option.au3"
 #include "GUI\MBR GUI Control Collectors.au3"
 #include "GUI\MBR GUI Control Milking.au3"
 #include "GUI\MBR GUI Control Def.au3"

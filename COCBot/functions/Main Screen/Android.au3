@@ -452,7 +452,7 @@ Func ConnectAndroidAdb($rebootAndroidIfNeccessary = $RunState)
    EndIf
 
    Return True ; ADB is connected
-EndFunc
+ EndFunc
 
 Func RebootAndroid()
     ResumeAndroid()

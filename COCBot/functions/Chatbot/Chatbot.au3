@@ -18,15 +18,15 @@
 #include <String.au3>
 
 Func ChatbotChatOpen() ; open the chat area
-	Click(18 ,380 , 1, 0, "") ; open chat
+	Click($aOpenChat[0] ,$aOpenChat[1] , 1, 0, "") ; open chat
     If _Sleep(1000) Then Return False
     Return True
 EndFunc
 
 Func ChatbotSelectClanChat() ; select clan tab
-   Click(210 ,20 , 1, 0, ""); switch to clan
+   Click($aClanTab[0] ,$aClanTab[1] , 1, 0, ""); switch to clan
    If _Sleep(1000) Then Return False
-   Click( 210,20 , 1, 0, ""); scroll to top
+   Click( $aClanTab[0],$aClanTab[1] , 1, 0, ""); scroll to top
    If _Sleep(1000) Then Return False
    Return True
 EndFunc
@@ -38,7 +38,7 @@ Func ChatbotSelectGlobalChat() ; select global tab
 EndFunc
 
 Func ChatbotChatClose() ; close chat area
-   Click(330 ,375 , 1, 0, ""); close chat
+   Click($aChatTab[0] ,$aChatTab[1] , 1, 0, ""); close chat
    waitMainScreen()
    Return True
 EndFunc
@@ -128,11 +128,18 @@ Func runHelper($msg, $isBotlibre) ; run a script to get a response from Botlibre
 EndFunc
 
 Func ChatbotIsLastChatNew() ; returns true if the last chat was not by you, false otherwise
-    _CaptureRegion()
-    For $x = 36 To 60
-		If _ColorCheck(_GetPixelColor($x, 137), Hex(0x92ee4d, 6), 5) Then Return False ; detect the green name
-		Next
-    Return True
+;~     _CaptureRegion()
+;~     For $x = 36 To 60
+;~ 		If _ColorCheck(_GetPixelColor($x, 137), Hex(0x92ee4d, 6), 5) Then Return False ; detect the green name
+;~ 		Next
+;~     Return True
+	If $iCheckSumchat = PixelChecksum(15, 155, 265, 265,"",$Title,"") Then
+		Return False
+	Else
+		$iCheckSumchat = PixelChecksum(15, 155, 265, 265,"",$Title,"")
+		Return True
+	EndIf
+
 EndFunc
 
 Func ChatbotPushbulletSendChat()
@@ -241,7 +248,7 @@ Func ChatbotMessage() ; run the chatbot
 	  EndIf
    EndIf
 
-   If $ichkClanChat = 1 Then
+    If $ichkClanChat = 1 Then
 	  If Not ChatbotChatOpen() Then Return
 	  SetLog("Chatbot: Sending chats to clan", $COLOR_GREEN)
 	  If Not ChatbotSelectClanChat() Then Return
